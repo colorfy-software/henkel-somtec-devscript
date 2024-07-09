@@ -25,6 +25,10 @@ type DeviceConnection struct {
 }
 
 func (conn *DeviceConnection) Connect() error {
+	if conn.client != nil {
+		return errors.New("already connected")
+	}
+
 	addr, err := url.Parse(conn.Addr)
 	if err != nil {
 		return err
@@ -87,6 +91,7 @@ func (conn *DeviceConnection) Disconnect() error {
 	if err := conn.client.Disconnect(); err != nil {
 		return err
 	}
+	conn.client = nil
 
 	return nil
 }

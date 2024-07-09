@@ -3,7 +3,6 @@ package devscript
 import (
 	"context"
 	"encoding/json"
-	"github.com/colorfy-software/henkel-somtec-devscript/env"
 	"github.com/hasura/go-graphql-client"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
@@ -54,7 +53,7 @@ func NewApiClient(ctx context.Context, email, password string) (*ApiClient, erro
 		q.Set("password", password)
 		q.Set("loginID", email)
 		q.Set("include", "id_token")
-		q.Set("apiKey", env.CDCKey)
+		q.Set("apiKey", Env.CDCKey)
 		req.URL.RawQuery = q.Encode()
 
 		res, err := http.DefaultClient.Do(req)
@@ -90,7 +89,7 @@ func NewApiClient(ctx context.Context, email, password string) (*ApiClient, erro
 		)
 		httpClient := oauth2.NewClient(ctx, src)
 
-		cli = graphql.NewClient(env.ApiURL, httpClient)
+		cli = graphql.NewClient(Env.ApiURL, httpClient)
 	}
 
 	return &ApiClient{

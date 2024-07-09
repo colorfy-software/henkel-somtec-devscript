@@ -1,41 +1,52 @@
 package main
 
 import (
-	. "github.com/colorfy-software/henkel-somtec-devscript/env"
 	. "github.com/colorfy-software/henkel-somtec-devscript/persil"
 	. "time"
 )
 
 func main() {
-	CDCKey = "3_w-MmHQNyAXCXjY_ZuPuCY3qWdDw0qC0VnnnqXgt9hdgyjxAeyxoUVr822kQMjvZL"
-	ApiURL = "https://app-api.stage.somtec.henkel.colorfy.cloud/v1/query"
+	// Set Environment to pilot
+	SetEnv(Pilot)
 
+	// Login with user and provision new device
 	user := Login("timo@colorfy.me", "]vW^a<f`7[d9V2en")
 	dev := user.ProvisionDevice()
 
+	// Connect device to backend
 	dev.Connect()
 
-	dev.RemoveFromStation()
+	// Remove device from station by setting its charging status to 'discharging'
+	dev.SetChargingStatus("discharging")
 
+	// Start wash cycle
 	dev.StartWashCycle()
 
+	// Wait for 3 seconds
 	Sleep(3 * Second)
 
+	// Set some device properties
 	dev.SetWashCycleStatus("washing")
 	dev.SetBatteryLevel(80)
 	dev.SetDetergentFillLevel(40)
 	dev.SetWashLoad(20)
 
+	// Wait for 3 seconds
 	Sleep(3 * Second)
 
+	// Set some more device properties
 	dev.SetWashCycleStatus("rinsing")
 	dev.SetBatteryLevel(70)
 
+	// Wait for 3 seconds
 	Sleep(3 * Second)
 
+	// Stop wash cycle with status 'done'
 	dev.StopWashCycle("done")
 
-	dev.ReturnToStation()
+	// Put device back on station
+	dev.SetChargingStatus("charging")
 
+	// Disconnect device from backend
 	dev.Disconnect()
 }

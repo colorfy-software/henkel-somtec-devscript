@@ -1,4 +1,4 @@
-package env
+package devscript
 
 import (
 	"fmt"

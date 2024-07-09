@@ -170,20 +170,12 @@ func (dev *Device) SetPerfumeFillLevel(level int) {
 	dev.props.Set("perfume_fill_level", level)
 }
 
-func (dev *Device) DisconnectBluetooth() {
-	dev.props.Set("bluetooth_status", "disconnected")
+func (dev *Device) SetBluetoothStatus(status string) {
+	dev.props.Set("bluetooth_status", status)
 }
 
-func (dev *Device) ReconnectBluetooth() {
-	dev.props.Set("bluetooth_status", "connected")
-}
-
-func (dev *Device) ReturnToStation() {
-	dev.props.Set("charging_status", "charging")
-}
-
-func (dev *Device) RemoveFromStation() {
-	dev.props.Set("charging_status", "discharging")
+func (dev *Device) SetChargingStatus(status string) {
+	dev.props.Set("charging_status", status)
 }
 
 func (dev *Device) SetWashCycleStatus(status string) {
