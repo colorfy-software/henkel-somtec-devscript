@@ -6,6 +6,7 @@ import (
 	"github.com/colorfy-software/henkel-somtec-devscript/env"
 	"github.com/hasura/go-graphql-client"
 	"github.com/pkg/errors"
+	"github.com/sirupsen/logrus"
 	"golang.org/x/oauth2"
 	"net/http"
 )
@@ -78,6 +79,8 @@ func NewApiClient(ctx context.Context, email, password string) (*ApiClient, erro
 		if loginResp.Token == "" {
 			return nil, errors.New("token missing")
 		}
+
+		logrus.Info("logged in")
 	}
 
 	var cli *graphql.Client
@@ -108,6 +111,6 @@ func (cli *ApiClient) ProvisionNewDevice(ctx context.Context) (*ProvisionNewDevi
 	if err := cli.gql.Mutate(ctx, &m, nil); err != nil {
 		return nil, err
 	}
-
+	logrus.Info("device provisioned")
 	return &m, nil
 }

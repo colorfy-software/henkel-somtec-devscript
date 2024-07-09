@@ -29,10 +29,13 @@ func main() {
 	Sleep(3 * Second)
 
 	dev.SetWashCycleStatus("rinsing")
+	dev.SetBatteryLevel(70)
 
 	Sleep(3 * Second)
 
 	dev.StopWashCycle("done")
+
+	dev.ReturnToStation()
 
 	dev.Disconnect()
 }

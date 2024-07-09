@@ -159,7 +159,7 @@ func (dev *Device) SetBatteryStatus(status string) {
 
 func (dev *Device) SetWashLoad(load int) {
 	dev.washLoad = load
-	logrus.Infof("wash load set to %d", dev.washLoad)
+	logrus.Infof("'wash_load' set to '%d'", dev.washLoad)
 }
 
 func (dev *Device) SetDetergentFillLevel(level int) {
@@ -178,7 +178,7 @@ func (dev *Device) ReconnectBluetooth() {
 	dev.props.Set("bluetooth_status", "connected")
 }
 
-func (dev *Device) PutOnStation() {
+func (dev *Device) ReturnToStation() {
 	dev.props.Set("charging_status", "charging")
 }
 
@@ -219,6 +219,8 @@ func (dev *Device) InsertRefill() {
 		panic(err)
 	}
 
+	logrus.Info("RefillChangedEvent sent")
+
 	logrus.Infof("refill inserted")
 }
 
@@ -239,6 +241,8 @@ func (dev *Device) StartWashCycle() {
 	if err := dev.conn.Publish(dev.washCycle); err != nil {
 		panic(err)
 	}
+
+	logrus.Info("WashCycleStartedEvent sent")
 
 	logrus.Infof("wash cycle started")
 }
@@ -280,6 +284,8 @@ func (dev *Device) StopWashCycle(status string) {
 	}
 
 	dev.washCycle = nil
+
+	logrus.Info("WashCycleCompletedEvent sent")
 
 	logrus.Infof("wash cycle stopped")
 }

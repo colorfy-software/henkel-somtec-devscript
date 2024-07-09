@@ -25,7 +25,7 @@ func (dp *DeviceProperties) Set(name string, value any) {
 		if prop.Value != value {
 			prop.Value = value
 			dp.OnPropertyChanged(prop)
-			logrus.Infof("%s set to %v", name, value)
+			logrus.Infof("'%s' set to '%v'", name, value)
 		}
 		return
 	}
