@@ -1,11 +1,11 @@
 package persil
 
 import (
+	"github.com/colorfy-software/henkel-somtec-devscript/devscript"
+	iotpersilpb "github.com/colorfy-software/henkel-somtec-devscript/proto/gen/henkel/device/v3/persil"
 	"github.com/google/uuid"
 	"github.com/sirupsen/logrus"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"henkel-somtec-devscript/devscript"
-	iotpersilpb "henkel-somtec-devscript/proto/gen/henkel/device/v3/persil"
 	"reflect"
 	"time"
 )

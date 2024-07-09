@@ -3,12 +3,12 @@ package devscript
 import (
 	"crypto/tls"
 	"fmt"
+	"github.com/colorfy-software/henkel-somtec-devscript/libs/mqttx"
+	iotdevpb "github.com/colorfy-software/henkel-somtec-devscript/proto/gen/colorfy/iot/device/v3"
 	"github.com/pkg/errors"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/structpb"
 	"google.golang.org/protobuf/types/known/timestamppb"
-	"henkel-somtec-devscript/libs/mqttx"
-	iotdevpb "henkel-somtec-devscript/proto/gen/colorfy/iot/device/v3"
 	"net/url"
 	"time"
 )

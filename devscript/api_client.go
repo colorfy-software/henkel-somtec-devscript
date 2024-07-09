@@ -3,10 +3,10 @@ package devscript
 import (
 	"context"
 	"encoding/json"
+	"github.com/colorfy-software/henkel-somtec-devscript/env"
 	"github.com/hasura/go-graphql-client"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2"
-	"henkel-somtec-devscript/env"
 	"net/http"
 )
 

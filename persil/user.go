@@ -3,7 +3,7 @@ package persil
 import (
 	"context"
 	"fmt"
-	"henkel-somtec-devscript/devscript"
+	"github.com/colorfy-software/henkel-somtec-devscript/devscript"
 )
 
 type User struct {

@@ -1,4 +1,4 @@
-module henkel-somtec-devscript
+module github.com/colorfy-software/henkel-somtec-devscript
 
 go 1.22
 

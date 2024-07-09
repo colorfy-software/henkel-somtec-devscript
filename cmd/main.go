@@ -1,8 +1,8 @@
 package main
 
 import (
-	. "henkel-somtec-devscript/env"
-	. "henkel-somtec-devscript/persil"
+	. "github.com/colorfy-software/henkel-somtec-devscript/env"
+	. "github.com/colorfy-software/henkel-somtec-devscript/persil"
 	. "time"
 )
 
@@ -10,7 +10,7 @@ func main() {
 	CDCKey = "3_w-MmHQNyAXCXjY_ZuPuCY3qWdDw0qC0VnnnqXgt9hdgyjxAeyxoUVr822kQMjvZL"
 	ApiURL = "https://app-api.stage.somtec.henkel.colorfy.cloud/v1/query"
 
-	user := Login("", "")
+	user := Login("timo@colorfy.me", "]vW^a<f`7[d9V2en")
 	dev := user.ProvisionDevice()
 
 	dev.Connect()
