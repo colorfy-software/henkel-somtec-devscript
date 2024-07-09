@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package colorfy.iot.device.v3;
+option go_package = "bitbucket.org/colorfy/colorfy-iot-go/proto/device;iotdevpb";
+
+import "colorfy/iot/device/v3/models.proto";
+import "google/protobuf/struct.proto";
+
+message PropertyUpdate {
+    string name = 1;
+    google.protobuf.Value value = 2;
+}
+
+message FirmwareUpdate {
+    Firmware firmware = 1;
+    bool forced = 2;
+}
+
+message ResetDeviceUpdate {}
+
+message RebootDeviceUpdate {}
+
+message DebugCommandUpdate {
+    string command = 1;
+    google.protobuf.Struct args = 2;
+}

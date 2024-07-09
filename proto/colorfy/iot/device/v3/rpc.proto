@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package colorfy.iot.device.v3;
+option go_package = "bitbucket.org/colorfy/colorfy-iot-go/proto/device;iotdevpb";
+
+import "google/protobuf/any.proto";
+
+enum Stream {
+    STREAM_NONE = 0;
+    STREAM_CONTINUE = 1;
+    STREAM_STOP = 2;
+    STREAM_START = 3;
+}
+
+message Request {
+    map<string, string> headers = 1;
+
+    string method = 2;
+
+    // Request ID
+    //
+    // Responses to this request need to carry the same Request ID.
+    string id = 3;
+
+    // Request body. Type is inferred from the service definition
+    bytes body = 4;
+
+    Stream client_stream = 5;
+    Stream server_stream = 6;
+}
+
+message Response {
+    enum Code {
+        CODE_OK = 0;
+        CODE_CANCELLED = 1;
+        CODE_UNKNOWN = 2;
+        CODE_INVALID_ARGUMENT = 3;
+        CODE_DEADLINE_EXCEEDED = 4;
+        CODE_NOT_FOUND = 5;
+        CODE_ALREADY_EXISTS = 6;
+        CODE_PERMISSION_DENIED = 7;
+        CODE_UNAUTHENTICATED = 16;
+        CODE_RESOURCE_EXHAUSTED = 8;
+        CODE_FAILED_PRECONDITION = 9;
+        CODE_ABORTED = 10;
+        CODE_OUT_OF_RANGE = 11;
+        CODE_UNIMPLEMENTED = 12;
+        CODE_INTERNAL = 13;
+        CODE_UNAVAILABLE = 14;
+        CODE_DATA_LOSS = 15;
+    }
+    message Error {
+        string message = 1;
+        repeated google.protobuf.Any details = 2;
+    }
+
+    map<string, string> headers = 1;
+
+    // Response Status Code
+    //
+    // OK if response successful, or other code if response failed
+    // In case of failure the body may contain an Error object
+    Code code = 2;
+
+    // Request ID
+    //
+    // Should carry the same id as the corresponding request
+    string request_id = 3;
+
+    // Response body. Type is inferred from the service definition. Only applicable if code = OK
+    bytes body = 4;
+
+    // Error information. Only applicable if code != OK
+    Error error = 5;
+
+    Stream client_stream = 6;
+    Stream server_stream = 7;
+}

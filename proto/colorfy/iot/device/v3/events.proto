@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package colorfy.iot.device.v3;
+option go_package = "bitbucket.org/colorfy/colorfy-iot-go/proto/device;iotdevpb";
+
+import "colorfy/iot/device/v3/models.proto";
+import "google/protobuf/any.proto";
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/struct.proto";
+
+message PropertyUpdatedEvent {
+    string device_id = 1;
+    Property property = 2;
+}
+
+message FirmwareUpdatedEvent {
+    string device_id = 1;
+    InstalledFirmware installed_firmware = 3;
+
+    // Deprecated, use `installed_firmware` instead
+    Firmware firmware = 2;
+}
+
+message DeviceConnectedEvent {
+    string device_id = 1;
+    repeated Property properties = 2;
+    repeated InstalledFirmware installed_firmwares = 4;
+
+    // Deprecated, use `installed_firmwares` instead
+    repeated Firmware firmwares = 3;
+}
+
+message ErrorEvent {
+    string device_id = 1;
+    google.protobuf.Timestamp time = 4;
+
+    string code = 5;
+    string message = 3;
+
+    reserved 2;
+}
+
+message LogEvent {
+    string device_id = 1;
+    google.protobuf.Timestamp time = 2;
+    string name = 3;
+    google.protobuf.Struct params = 4;
+}
+
+message CoreDumpEvent {
+    string device_id = 1;
+    google.protobuf.Timestamp time = 2;
+    // Optional, ex: station, ball
+    string device_type = 3;
+    string dump_name = 4;
+    bytes dump_image = 5;
+}

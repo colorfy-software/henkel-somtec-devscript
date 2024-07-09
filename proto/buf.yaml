@@ -1,0 +1,19 @@
+version: v1beta1
+build:
+  roots:
+    - .
+  excludes:
+    - google
+lint:
+  use:
+    - DEFAULT
+  ignore:
+    - google
+    - grpc
+  except:
+    - PACKAGE_VERSION_SUFFIX
+    - ENUM_ZERO_VALUE_SUFFIX
+breaking:
+  use:
+    - WIRE_JSON
+

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package colorfy.iot.device.v3;
+option go_package = "bitbucket.org/colorfy/colorfy-iot-go/proto/device;iotdevpb";
+
+import "google/protobuf/struct.proto";
+import "google/protobuf/timestamp.proto";
+
+message Property {
+    string name = 1;
+    enum Status {
+        STATUS_PENDING = 0;
+        STATUS_RECEIVED = 1;
+        STATUS_CONFIRMED = 2;
+    }
+    Status status = 2;
+    google.protobuf.Value value = 3;
+    google.protobuf.Value desired_value = 4;
+    google.protobuf.Timestamp update_time = 5;
+}
+
+message Firmware {
+    string name = 1;
+    int32 version = 2;
+    string type = 3;
+    string revision = 5;
+    string download_url = 4;
+}
+
+message InstalledFirmware {
+    enum Status {
+        STATUS_INSTALLED = 0;
+        STATUS_INSTALLING = 1;
+    }
+    string name = 1;
+    int32 version = 2;
+    string type = 3;
+    string revision = 5;
+    Status status = 6;
+}
