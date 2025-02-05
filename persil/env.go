@@ -5,13 +5,18 @@ import (
 )
 
 var Staging = devscript.Environment{
-	CDCKey: "3_w-MmHQNyAXCXjY_ZuPuCY3qWdDw0qC0VnnnqXgt9hdgyjxAeyxoUVr822kQMjvZL",
+	CDCKey: "4_eab1LxYuED9EhZXoR7Mnyw",
 	ApiURL: "https://app-api.stage.somtec.henkel.colorfy.cloud/v1/query",
 }
 
 var Pilot = devscript.Environment{
-	CDCKey: "3_w-MmHQNyAXCXjY_ZuPuCY3qWdDw0qC0VnnnqXgt9hdgyjxAeyxoUVr822kQMjvZL",
+	CDCKey: "4_JCLXeVbb4E9jaoj1MGMjOA",
 	ApiURL: "https://app-api.pilot.somtec.henkel.colorfy.cloud/v1/query",
+}
+
+var Prod = devscript.Environment{
+	CDCKey: "4_7pFbZGIOTT7AK-6PPWu8Og",
+	ApiURL: "https://app-api.smartwash.co/v1/query",
 }
 
 func SetEnv(env devscript.Environment) {
